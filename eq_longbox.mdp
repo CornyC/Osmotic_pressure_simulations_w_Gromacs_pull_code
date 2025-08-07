@@ -1,0 +1,66 @@
+; restraints
+; e.g.: -DPOSRES -DFLEXIBLE (note these variable names are case sensitive)
+define                   = -DPOSRESMP1MAM
+
+; Run control
+integrator          = md 
+dt                  = 0.002
+nsteps              = 5000000   ; 10ns
+
+; random seeds
+ld-seed			    = 12345
+gen-seed		    = 12345
+
+; Output control
+nstxout             = 100000
+nstlog              = 100000
+nstenergy           = 100000
+
+; mode for center of mass motion removal
+comm-mode                = None
+; number of steps for center of mass motion removal
+nstcomm                  = 0
+; group(s) for center of mass motion removal
+comm-grps                = System
+
+; Neighbor searching
+nstlist             = 10
+ns_type             = grid
+pbc                 = xyz
+
+; cutoff related
+cutoff-scheme       = verlet
+rlist			    = 1.2
+coulombtype         = PME
+coulomb-modifier         = Potential-shift-Verlet
+rcoulomb-switch          = 0
+rcoulomb            = 1.2
+vdwtype			    = cutoff
+vdw-modifier             = Potential-switch
+rvdw-switch              = 0.8
+rvdw			    = 1.2
+
+; Temperature coupling
+tcoupl			    = v-rescale
+; Groups to couple separately
+tc-grps                  = System
+; Time constant (ps) and reference temperature (K)
+tau-t                    = 0.1 
+ref-t                    = 310 
+; pressure coupling     
+Pcoupl                   = c-rescale
+Pcoupltype               = semiisotropic
+nstpcouple               = -1
+; Time constant (ps), compressibility (1/bar) and reference P (bar)
+tau-p                    = 5.0
+compressibility          = 0 4.5e-5
+ref-p                    = 1.0 1.0
+; Scaling of reference coordinates, No, All or COM
+refcoord-scaling         = COM
+
+; generate velocities
+gen_vel             = yes 
+
+; constrain H-bond length
+constraint-algorithm    = LINCS
+constraints         = h-bonds

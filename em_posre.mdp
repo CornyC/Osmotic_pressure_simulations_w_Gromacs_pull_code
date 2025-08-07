@@ -1,0 +1,36 @@
+; Run control
+integrator      = steep 
+define			= -DPOSREMP1MAM
+nsteps          = 50000
+emtol           = 100
+emstep          = 0.01
+
+; random seeds
+ld-seed         = 12345
+gen-seed		= 12345
+
+; Output control
+nstlog          = 1
+nstenergy       = 1
+
+; Neighbor searching
+ns_type         = grid
+rlist			= 1.2
+
+; boundary conditions
+pbc             = xyz
+
+; cutoff related
+cutoff-scheme       = verlet
+coulombtype         = PME
+coulomb-modifier         = Potential-shift-Verlet
+rcoulomb-switch          = 0
+rcoulomb            = 1.2
+vdwtype			    = cutoff
+vdw-modifier             = Potential-switch
+rvdw-switch              = 0.8
+rvdw			    = 1.2
+
+; Temperature and pressure coupling are off during EM
+tcoupl          = no
+pcoupl          = no

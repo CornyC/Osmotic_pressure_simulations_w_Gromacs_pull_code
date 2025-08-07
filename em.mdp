@@ -1,0 +1,32 @@
+; Run control
+integrator      = steep 
+define			= -DFLEXIBLE
+nsteps          = 50000
+emtol           = 100
+emstep          = 0.01
+
+; random seeds
+ld-seed         = 12345
+gen-seed		= 12345
+
+; Output control
+nstlog          = 1
+nstenergy       = 1
+
+; Neighbor searching
+ns_type         = grid
+rlist			= 1.2
+
+; boundary conditions
+pbc             = xyz
+
+; cutoff
+cutoff-scheme   = verlet
+coulombtype     = PME
+rcoulomb        = 1.2
+vdwtype			= cutoff
+rvdw            = 1.2
+
+; Temperature and pressure coupling are off during EM
+tcoupl          = no
+pcoupl          = no

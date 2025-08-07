@@ -1,0 +1,42 @@
+; Run control
+integrator          = md 
+dt                  = 0.002
+nsteps              = 5000000   ; 10ns
+
+; random seeds
+ld-seed			    = 12345
+gen-seed		    = 12345
+
+; Output control
+nstxout             = 1000
+nstlog              = 1000
+nstenergy           = 1000
+
+; Neighbor searching
+nstlist             = 10
+ns_type             = grid
+pbc                 = xyz
+
+; cutoff related
+cutoff-scheme       = verlet
+rlist			    = 1.2
+coulombtype         = PME
+rcoulomb            = 1.2
+vdwtype			    = cutoff
+rvdw			    = 1.2
+
+; Temperature coupling
+tcoupl			    = v-rescale
+tc_grps             = system
+tau_t               = 0.1
+ref_t               = 310
+
+; Pressure coupling
+pcoupl              =  no
+
+; generate velocities
+gen_vel             = yes 
+
+; constrain H-bond length
+constraint-algorithm    = LINCS
+constraints         = h-bonds
